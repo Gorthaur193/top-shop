@@ -1,11 +1,13 @@
-﻿namespace top_shop_models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace top_shop_models
 {
     public class Order
     {
         public Guid Id { get; set; }
         public double TotalPrice { get; set; }
 
-        public virtual Client Client { get; set; }
+        [Required] public virtual Client Client { get; set; }
         public virtual ICollection<ItemOrder> ItemOrders { get; set; }
     }
 }

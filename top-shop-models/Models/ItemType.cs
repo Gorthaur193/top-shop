@@ -1,8 +1,10 @@
-﻿namespace top_shop_models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace top_shop_models
 {
     public class ItemType
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        [Required][StringLength(30)] public string Name { get; set; }
     }
 }

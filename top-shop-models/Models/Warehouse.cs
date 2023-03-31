@@ -1,9 +1,11 @@
-﻿namespace top_shop_models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace top_shop_models
 {
     public class Warehouse
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        [Required][StringLength(100)] public string Name { get; set; }
 
         public virtual ICollection<ItemWarehouse> ItemWarehouses { get; set; }
     }
