@@ -1,0 +1,119 @@
+﻿<Window x:Class="top_shop_warehouse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="TOP SHOP WAREHOUSE" Height="450" Width="800" x:Name="This">
+    <Grid>
+        <TabControl>
+            <TabControl.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Background" Value="#FFE5E5E5"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Providers" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="38*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=20}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5, 10">
+                        <CheckBox Content="On this warehouse"/>                        
+                    </StackPanel>
+                    
+                    <Grid Grid.Column="1">
+                        <StackPanel HorizontalAlignment="Center" Margin="0, 10">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="16" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Text="NAME" FontWeight="Bold" FontSize="20"/>
+                            <TextBlock Text="TIN" />
+                            <TextBlock Text="DESCRIPTION" Margin="0,100,0,0"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <StackPanel.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Margin" Value="10, 0" />
+                                    <Setter Property="MinWidth" Value="60" />
+                                    <Setter Property="FontSize" Value="16" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <Button Content="Open Items"/>                            
+                            <Button Content="Edit" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Items" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="38*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=20}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5, 10">
+                        <CheckBox Content="On this warehouse"/>
+                    </StackPanel>
+                    
+                    <Grid Grid.Column="1">
+                        <StackPanel HorizontalAlignment="Center" Margin="0, 10">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="16" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Text="NAME" FontWeight="Bold" FontSize="20"/>
+                            <TextBlock Text="ITEMTYPE" />
+                            <Image MinHeight="150" Margin="20" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Orientation="Vertical" Margin="5, 0">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                            <Setter Property="FontSize" Value="16" />
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="Price" />
+                                    <TextBlock Text="Description" />
+                                    <TextBlock Text="Provider" />                                    
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="5, 0">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            <Setter Property="FontSize" Value="16" />
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="PRICE V34343E" />
+                                    <TextBlock Text="DESC VE" />
+                                    <TextBlock Text="PROVIDER LINK" />
+                                </StackPanel>
+                            </StackPanel>                            
+                        </StackPanel>
+                        <Button Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16" MinWidth="60" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="⚙" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="1" />
+    </Grid>
+</Window>
