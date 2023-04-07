@@ -8,4 +8,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\top-shop-dbconnector\top-shop-dbconnector.csproj" />
+    <ProjectReference Include="..\top-shop-models\top-shop-models.csproj" />
+  </ItemGroup>
+
 </Project>
