@@ -180,7 +180,7 @@
                 </Style>
             </StackPanel.Resources>
             <Button Content="↺" Click="UpdateButton_Click" />
-            <Button Content="⚙" />
+            <Button Content="⚙" Click="SettingsButton_Click" />
         </StackPanel>
     </Grid>
 </Window>

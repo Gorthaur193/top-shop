@@ -8,5 +8,7 @@ namespace top_shop_models
         [Required][StringLength(100)] public string Name { get; set; }
 
         public virtual ICollection<ItemWarehouse> ItemWarehouses { get; set; }
+
+        public override string ToString() => Name;
     }
 }

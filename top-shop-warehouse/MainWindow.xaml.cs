@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +13,7 @@ namespace top_shop_warehouse
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public Warehouse CurrentWarehouse { get; set; }
         public Provider? CurrentProvider { get; set; }
         public Item? CurrentItem { get; set; }
         public ObservableCollection<Provider> Providers { get; set; } 
@@ -20,6 +23,8 @@ namespace top_shop_warehouse
         private TopShopContext db = new();
         public MainWindow() 
         {
+            CurrentWarehouse = new WarehouseSettings(false).CurrentWarehouse;
+
             Providers = new(db.Providers.ToArray());
             Items = new(db.Items.ToArray());
             ItemTypes = new(db.ItemTypes.ToArray());
@@ -62,6 +67,14 @@ namespace top_shop_warehouse
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var warehouseSettingsForm = new WarehouseSettings(true);
+            warehouseSettingsForm.ShowDialog();
+            CurrentWarehouse = warehouseSettingsForm.CurrentWarehouse;
+            // todo: trigger data update for current warehouse
         }
     }
 }
