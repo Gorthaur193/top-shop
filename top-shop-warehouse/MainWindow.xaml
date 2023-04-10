@@ -24,7 +24,7 @@
                     </Grid.ColumnDefinitions>
                     
                     <DataGrid CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
-                              RowEditEnding="Providers_Edit"
+                              RowEditEnding="DataGrid_EditFinished"
                               SelectionChanged="Providers_SelectionChanged"
                               ItemsSource="{Binding Providers, ElementName=This, Mode=TwoWay}">
                         <DataGrid.Columns>
@@ -78,7 +78,7 @@
                     </Grid.ColumnDefinitions>
 
                     <DataGrid CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
-                              RowEditEnding="Items_Edit"
+                              RowEditEnding="DataGrid_EditFinished"
                               SelectionChanged="Items_SelectionChanged"
                               ItemsSource="{Binding Items, ElementName=This, Mode=TwoWay}">
                         <DataGrid.Columns>
@@ -133,6 +133,18 @@
                         </StackPanel>
                         <Button Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16" MinWidth="60" />
                     </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Item types" FontSize="16">
+                <Grid>
+                    <DataGrid CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                              RowEditEnding="DataGrid_EditFinished"
+                              ItemsSource="{Binding ItemTypes, ElementName=This, Mode=TwoWay}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" MaxWidth="80" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" MinWidth="300"/> 
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>
