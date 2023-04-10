@@ -10,5 +10,7 @@ namespace top_shop_models
         [Required][StringLength(100)] public string TIN { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
+
+        public override string ToString() => Name;
     }
 }

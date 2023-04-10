@@ -4,7 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="TOP SHOP WAREHOUSE" Height="500" Width="1000" x:Name="This">
+        Title="TOP SHOP WAREHOUSE" Height="600" Width="1050" x:Name="This">
+
     <Grid>
         <TabControl>
             <TabControl.Resources>
@@ -86,8 +87,31 @@
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" MinWidth="200" />
                             <DataGridTextColumn Header="Price" Binding="{Binding Price}" MinWidth="100" />
                             <DataGridTextColumn Header="Description" Binding="{Binding Description}" MinWidth="100" />
-                            <DataGridComboBoxColumn Header="ItemType" SelectedValueBinding="{Binding ItemType}" ItemsSource="{Binding ItemTypes, ElementName=This}" />
-                            <DataGridComboBoxColumn Header="Provider" SelectedValueBinding="{Binding Provider}" ItemsSource="{Binding Providers, ElementName=This}" />
+                            <DataGridComboBoxColumn Header="Item Type" SelectedValueBinding="{Binding ItemType}">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding ItemTypes, ElementName=This, Mode=OneWay}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding ItemTypes, ElementName=This, Mode=OneWay}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+
+                            <DataGridComboBoxColumn Header="Provider" SelectedValueBinding="{Binding Provider}">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding Providers, ElementName=This, Mode=OneWay}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding Providers, ElementName=This, Mode=OneWay}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5, 10">
