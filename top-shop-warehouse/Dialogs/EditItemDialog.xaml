@@ -1,0 +1,47 @@
+﻿<Window x:Class="top_shop_warehouse.EditItemDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:top_shop_warehouse"
+        mc:Ignorable="d"
+        Title="Edit Item" Height="250" Width="300" x:Name="This">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="0, 10">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="FontSize" Value="16" />
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock d:Text="NAME" Text="{Binding CurrentItem.Name, ElementName=This, Mode=OneWay}" FontWeight="Bold" FontSize="20"/>
+            <TextBlock d:Text="ITEMTYPE" Text="{Binding CurrentItem.ItemType.Name, ElementName=This, Mode=OneWay}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
+                <StackPanel Orientation="Vertical" Margin="5, 0">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="FontSize" Value="16" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Amount" />
+                    <TextBlock Text="Comment" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5, 0">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="MinWidth" Value="100" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox d:Text="Amount" Text="{Binding CurrentItemWarehouse.Amount, ElementName=This, Mode=TwoWay}"  />
+                    <TextBox d:Text="Comment" Text="{Binding CurrentItemWarehouse.Comment, ElementName=This, Mode=TwoWay}" />
+                </StackPanel>
+            </StackPanel>
+
+            <Button HorizontalAlignment="Right" Content="Save" Margin="0,20,0,0" FontSize="16" Click="Button_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

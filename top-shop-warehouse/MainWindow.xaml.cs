@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,9 +16,12 @@ namespace top_shop_warehouse
         public Warehouse CurrentWarehouse { get; set; }
         public Provider? CurrentProvider { get; set; }
         public Item? CurrentItem { get; set; }
+        public ItemWarehouse? CurrentItemWarehouse =>
+            ItemWarehouses.FirstOrDefault(x => x.Item == CurrentItem);
         public ObservableCollection<Provider> Providers { get; set; } 
         public ObservableCollection<Item> Items { get; set; }
         public ObservableCollection<ItemType> ItemTypes { get; set; }
+        private List<ItemWarehouse> ItemWarehouses { get; set; }
 
         private TopShopContext db = new();
         public MainWindow() 
@@ -27,6 +30,7 @@ namespace top_shop_warehouse
             Providers = new(db.Providers.ToArray());
             Items = new(db.Items.ToArray());
             ItemTypes = new(db.ItemTypes.ToArray());
+            ItemWarehouses = new(db.ItemWarehouses.Where(x => x.Warehouse == CurrentWarehouse).ToArray());
             InitializeComponent();
         }
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -40,8 +44,23 @@ namespace top_shop_warehouse
         private void Items_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid datagrid = (DataGrid)sender;
-            CurrentItem = datagrid.SelectedItem as Item;
+            Item? item = datagrid.SelectedItem as Item;
+            if (item is not null && ItemWarehouses.FirstOrDefault(x => x.Item == item) is null) // todo unique index ItemWarehouse based on Item and Warehouse
+            {
+                var newItemWarehouse = new ItemWarehouse()
+                {
+                    Amount = 0,
+                    Comment = "",
+                    Warehouse = CurrentWarehouse,
+                    Item = item
+                };
+                db.ItemWarehouses.Add(newItemWarehouse);
+                db.SaveChanges();
+                ItemWarehouses.Add(newItemWarehouse);
+            }
+            CurrentItem = item;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentItem)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentItemWarehouse)));
         }
 
         private bool _itemsCommiting = false;
@@ -74,6 +93,20 @@ namespace top_shop_warehouse
             warehouseSettingsForm.ShowDialog();
             CurrentWarehouse = warehouseSettingsForm.CurrentWarehouse;
             // todo: trigger data update for current warehouse
+        }
+
+        private void EditItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentItem is not null && CurrentItemWarehouse is not null)
+            {
+                var dialog = new EditItemDialog()
+                {
+                    CurrentItem = CurrentItem,
+                    CurrentItemWarehouse = CurrentItemWarehouse
+                };
+                dialog.ShowDialog();
+                db.SaveChanges();
+            }
         }
     }
 }

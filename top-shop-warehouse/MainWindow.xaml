@@ -140,7 +140,9 @@
                                     </StackPanel.Resources>
                                     <TextBlock Text="Price" />
                                     <TextBlock Text="Description" />
-                                    <TextBlock Text="Provider" />                                    
+                                    <TextBlock Text="Provider" />
+                                    <TextBlock Text="Amount" FontWeight="ExtraBold" />
+                                    <TextBlock Text="Comment" FontWeight="ExtraBold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin="5, 0">
                                     <StackPanel.Resources>
@@ -152,10 +154,12 @@
                                     <TextBlock d:Text="PRICE V34343E" Text="{Binding CurrentItem.Price, ElementName=This, Mode=OneWay}" />
                                     <TextBlock d:Text="DESC VE" Text="{Binding CurrentItem.Description, ElementName=This, Mode=OneWay}"/>
                                     <TextBlock d:Text="PROVIDER LINK" Text="{Binding CurrentItem.Provider, ElementName=This, Mode=OneWay}" />
+                                    <TextBlock d:Text="Amount" Text="{Binding CurrentItemWarehouse.Amount, ElementName=This, Mode=OneWay}"  FontWeight="ExtraBold" />
+                                    <TextBlock d:Text="Comment" Text="{Binding CurrentItemWarehouse.Comment, ElementName=This, Mode=OneWay}"  FontWeight="ExtraBold" />
                                 </StackPanel>
                             </StackPanel>                            
                         </StackPanel>
-                        <Button Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16" MinWidth="60" />
+                        <Button Content="Edit" Click="EditItemButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16" MinWidth="60" />
                     </Grid>
                 </Grid>
             </TabItem>
