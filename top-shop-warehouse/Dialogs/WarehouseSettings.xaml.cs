@@ -13,12 +13,13 @@ namespace top_shop_warehouse
     public partial class WarehouseSettings : Window
     {
         private const string settingsFilePath = @"warehouse_appsettings.json";
-        private TopShopContext db = new();
+        private TopShopContext db;
 
         public ObservableCollection<Warehouse> Warehouses { get; set; }
         public Warehouse CurrentWarehouse { get; set; }
-        public WarehouseSettings(bool show)
+        public WarehouseSettings(bool show, TopShopContext db)
         {
+            this.db = db;
             Configure();
             if (show)
                 InitializeComponent();

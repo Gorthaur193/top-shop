@@ -17,7 +17,9 @@ namespace top_shop_dbconnector
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer((string?)JObject.Parse(File.ReadAllText("settings.json"))?["connectionString"] ?? throw new FileNotFoundException("Settings are lost!"));
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer((string?)JObject.Parse(File.ReadAllText("settings.json"))?["connectionString"] ?? throw new FileNotFoundException("Settings are lost!"));
             base.OnConfiguring(optionsBuilder);
         }
 

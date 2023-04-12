@@ -23,8 +23,7 @@ namespace top_shop_warehouse
         private TopShopContext db = new();
         public MainWindow() 
         {
-            CurrentWarehouse = new WarehouseSettings(false).CurrentWarehouse;
-
+            CurrentWarehouse = new WarehouseSettings(false, db).CurrentWarehouse;
             Providers = new(db.Providers.ToArray());
             Items = new(db.Items.ToArray());
             ItemTypes = new(db.ItemTypes.ToArray());
@@ -71,7 +70,7 @@ namespace top_shop_warehouse
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            var warehouseSettingsForm = new WarehouseSettings(true);
+            var warehouseSettingsForm = new WarehouseSettings(true, db);
             warehouseSettingsForm.ShowDialog();
             CurrentWarehouse = warehouseSettingsForm.CurrentWarehouse;
             // todo: trigger data update for current warehouse
