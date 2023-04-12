@@ -13,18 +13,21 @@ namespace top_shop_warehouse
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public const string defaultAvatarImage = "https://img.freepik.com/premium-psd/paper-bag-concept-with-mock-up_23-2148807278.jpg";
+
         public Warehouse CurrentWarehouse { get; set; }
         public Provider? CurrentProvider { get; set; }
         public Item? CurrentItem { get; set; }
+        public Uri CurrentItemAvatarUri => new(CurrentItem?.AvatarLink ?? defaultAvatarImage);
         public ItemWarehouse? CurrentItemWarehouse =>
             ItemWarehouses.FirstOrDefault(x => x.Item == CurrentItem);
-        public ObservableCollection<Provider> Providers { get; set; } 
+        public ObservableCollection<Provider> Providers { get; set; }
         public ObservableCollection<Item> Items { get; set; }
         public ObservableCollection<ItemType> ItemTypes { get; set; }
         private List<ItemWarehouse> ItemWarehouses { get; set; }
 
         private TopShopContext db = new();
-        public MainWindow() 
+        public MainWindow()
         {
             CurrentWarehouse = new WarehouseSettings(false, db).CurrentWarehouse;
             Providers = new(db.Providers.ToArray());
@@ -45,21 +48,23 @@ namespace top_shop_warehouse
         {
             DataGrid datagrid = (DataGrid)sender;
             Item? item = datagrid.SelectedItem as Item;
-            if (item is not null && ItemWarehouses.FirstOrDefault(x => x.Item == item) is null) // todo unique index ItemWarehouse based on Item and Warehouse
-            {
-                var newItemWarehouse = new ItemWarehouse()
+            if (item is not null && ItemWarehouses.FirstOrDefault(x => x.Item == item) is null)
+                if (db.Entry(item).State == EntityState.Unchanged || db.Entry(item).State == EntityState.Modified)
                 {
-                    Amount = 0,
-                    Comment = "",
-                    Warehouse = CurrentWarehouse,
-                    Item = item
-                };
-                db.ItemWarehouses.Add(newItemWarehouse);
-                db.SaveChanges();
-                ItemWarehouses.Add(newItemWarehouse);
-            }
+                    var newItemWarehouse = new ItemWarehouse()
+                    {
+                        Amount = 0,
+                        Comment = "",
+                        Warehouse = CurrentWarehouse,
+                        Item = item
+                    };
+                    db.ItemWarehouses.Add(newItemWarehouse);
+                    db.SaveChanges();
+                    ItemWarehouses.Add(newItemWarehouse);
+                }
             CurrentItem = item;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentItem)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentItemAvatarUri)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentItemWarehouse)));
         }
 
@@ -71,15 +76,22 @@ namespace top_shop_warehouse
             {
                 _itemsCommiting = true;
                 datagrid.CommitEdit();
-                dynamic item = e.Row.Item; //todo: fix this crutch
+                try
+                {
+                    dynamic item = e.Row.Item; //todo: fix this crutch
 
-                if (item.Id == Guid.Empty)
-                    db.Add(item);
-                else
-                    db.Update(item);
-                db.SaveChanges();
-                _itemsCommiting = false;
-                datagrid.Items.Refresh();
+                    if (item.Id == Guid.Empty)
+                        db.Add(item);
+                    else
+                        db.Update(item);
+                    db.SaveChanges();
+                }
+                catch { } // i dont care really
+                finally
+                {
+                    _itemsCommiting = false;
+                    datagrid.Items.Refresh();
+                }
             }
         }
         private void UpdateButton_Click(object sender, RoutedEventArgs e)

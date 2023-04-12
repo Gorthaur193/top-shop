@@ -129,7 +129,8 @@
                             </StackPanel.Resources>
                             <TextBlock d:Text="NAME" Text="{Binding CurrentItem.Name, ElementName=This, Mode=OneWay}" FontWeight="Bold" FontSize="20"/>
                             <TextBlock d:Text="ITEMTYPE" Text="{Binding CurrentItem.ItemType.Name, ElementName=This, Mode=OneWay}" />
-                            <Image MinHeight="150" Margin="20" />
+                            <Image MinHeight="150" Margin="20" Stretch="UniformToFill" 
+                                   Source="{Binding CurrentItemAvatarUri, ElementName=This, Mode=OneWay}" />
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <StackPanel Orientation="Vertical" Margin="5, 0">
                                     <StackPanel.Resources>

@@ -2,7 +2,7 @@
 
 namespace top_shop_models
 {
-    public class ItemWarehouse
+    public class ItemWarehouse // todo unique index ItemWarehouse based on Item and Warehouse
     {
         public Guid Id { get; set; }
         public int Amount { get; set; }
