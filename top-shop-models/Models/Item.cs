@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace top_shop_models
 {
@@ -7,6 +8,7 @@ namespace top_shop_models
         public Guid Id { get; set; }
         [Required][StringLength(30)] public string Name { get; set; }
         [Required][StringLength(500)] public string Description { get; set; }
+        [NotMapped] public string? AvatarLink { get; set; }
         public double Price { get; set; }
 
         [Required] public virtual ItemType ItemType { get; set; }
