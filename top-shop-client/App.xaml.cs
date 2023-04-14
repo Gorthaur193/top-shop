@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace top_shop_client
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        // #FEFBF6 - main
+        // #A6D1E6 - secondary
+        // #7F5283 - contrast elements
+        // #3D3C42 - dark elements
     }
 }

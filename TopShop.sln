@@ -10,7 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "top-shop-dbconnector", "top-shop-dbconnector\top-shop-dbconnector.csproj", "{9373C5E3-0475-497F-86D7-CF0D77A03B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "top-shop-dbconnector", "top-shop-dbconnector\top-shop-dbconnector.csproj", "{9373C5E3-0475-497F-86D7-CF0D77A03B89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DC7ECFD5-53FC-447C-8860-97EB7E9D8665}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "top-shop-client", "top-shop-client\top-shop-client.csproj", "{AE6C12A6-A158-461F-9B94-051671F3676B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +33,17 @@ Global
 		{9373C5E3-0475-497F-86D7-CF0D77A03B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9373C5E3-0475-497F-86D7-CF0D77A03B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9373C5E3-0475-497F-86D7-CF0D77A03B89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE6C12A6-A158-461F-9B94-051671F3676B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE6C12A6-A158-461F-9B94-051671F3676B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE6C12A6-A158-461F-9B94-051671F3676B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE6C12A6-A158-461F-9B94-051671F3676B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1AA613A1-3E53-4C49-9C38-58727A4FB4A1} = {DC7ECFD5-53FC-447C-8860-97EB7E9D8665}
+		{9373C5E3-0475-497F-86D7-CF0D77A03B89} = {DC7ECFD5-53FC-447C-8860-97EB7E9D8665}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4FAD9AE-E77F-4CD0-8733-D00DDC13E533}

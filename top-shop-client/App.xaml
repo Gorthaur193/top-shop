@@ -4,6 +4,37 @@
              xmlns:local="clr-namespace:top_shop_client"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#FFFEFBF6" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#FF3D3C42" />
+            <Setter Property="Background" Value="#FFFEFBF6" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF3D3C42" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="BasicButton">
+            <Setter Property="Foreground" Value="#FFA6D1E6" />
+            <Setter Property="Background" Value="#FF3D3C42" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Fill="{TemplateBinding Background}" 
+                                     Width="{TemplateBinding Width}" 
+                                     Height="{TemplateBinding Height}" RadiusX="3" RadiusY="3" />
+
+                            <TextBlock Text="{TemplateBinding Content}" Style="{x:Null}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       HorizontalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BasicButton}"/>
     </Application.Resources>
 </Application>
