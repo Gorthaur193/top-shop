@@ -1,0 +1,41 @@
+﻿<Window x:Class="top_shop_client.Dialogs.SignUpDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:top_shop_client.Dialogs"
+        mc:Ignorable="d"
+        Title="SignInDialog" Height="250" Width="220" x:Name="This">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Sign Up" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20,10,20,20" />
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource BasicTextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="FontSize" Value="15"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Name" />
+                    <TextBlock Text="Phone" />
+                    <TextBlock Text="Login" />
+                    <TextBlock Text="Password" />
+                </StackPanel>
+                <StackPanel MinWidth="100">
+                    <TextBox FontSize="15" Text="{Binding ElementName=This, Mode=TwoWay, Path=ClientName}" />
+                    <TextBox FontSize="15" Text="{Binding ElementName=This, Mode=TwoWay, Path=Phone}" />
+                    <TextBox FontSize="15" Text="{Binding ElementName=This, Mode=TwoWay, Path=Login}" />
+                    <PasswordBox FontSize="15" x:Name="PasswordBox"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Content="Register" FontSize="16" Margin="10, 20" Click="SignUpButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -6,12 +6,38 @@
         xmlns:local="clr-namespace:top_shop_client" 
         xmlns:my="clr-namespace:top_shop_client.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" x:Name="This">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding SignInButtonsVisibility, ElementName=This, Mode=OneWay}">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="Foreground" Value="#FF3D3C42" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Margin" Value="5, 0" />
+                    <Setter Property="FontSize" Value="16" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Sign up" Click="SignUpButton_Click" />
+            <Button Content="Sign in" FontWeight="Bold" Click="SignInButton_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding UserButtonVisibility, ElementName=This, Mode=OneWay}">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="Foreground" Value="#FF3D3C42" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Margin" Value="5, 0" />
+                    <Setter Property="FontSize" Value="16" />
+                </Style>
+            </StackPanel.Resources>
+            <Button d:Content="User Name" Content="{Binding Client.Name, ElementName=This, Mode=OneWay}" />
+            <Button Content="Log out" FontWeight="Bold"/>
+        </StackPanel>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Center">
             <WrapPanel x:Name="ItemList">
                 <WrapPanel.Resources>

@@ -11,9 +11,11 @@
             <Setter Property="Foreground" Value="#FF3D3C42" />
             <Setter Property="Background" Value="#FFFEFBF6" />
         </Style>
-        <Style TargetType="TextBlock">
+        <Style TargetType="TextBlock" x:Key="BasicTextBlock">
             <Setter Property="Foreground" Value="#FF3D3C42" />
         </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BasicTextBlock}"/>
+
 
         <Style TargetType="Button" x:Key="BasicButton">
             <Setter Property="Foreground" Value="#FFA6D1E6" />
@@ -29,7 +31,7 @@
 
                             <TextBlock Text="{TemplateBinding Content}" Style="{x:Null}"
                                        Foreground="{TemplateBinding Foreground}"
-                                       HorizontalAlignment="Center"/>
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
